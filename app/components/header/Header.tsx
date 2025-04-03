@@ -6,6 +6,7 @@ const routes = [
   { href: "/", title: "Home" },
   { href: "/counter", title: "Counter" },
   { href: "/form", title: "Form" },
+  { href: "/reacthooks", title: "React Hooks" },
 ];
 
 export default function Header() {

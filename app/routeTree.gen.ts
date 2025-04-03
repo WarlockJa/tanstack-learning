@@ -14,6 +14,8 @@ import { Route as rootRoute } from './routes/__root'
 import { Route as FormImport } from './routes/form'
 import { Route as CounterImport } from './routes/counter'
 import { Route as IndexImport } from './routes/index'
+import { Route as ReacthooksIndexImport } from './routes/reacthooks/index'
+import { Route as ReacthooksSyncexternalstoreImport } from './routes/reacthooks/syncexternalstore'
 
 // Create/Update Routes
 
@@ -34,6 +36,19 @@ const IndexRoute = IndexImport.update({
   path: '/',
   getParentRoute: () => rootRoute,
 } as any)
+
+const ReacthooksIndexRoute = ReacthooksIndexImport.update({
+  id: '/reacthooks/',
+  path: '/reacthooks/',
+  getParentRoute: () => rootRoute,
+} as any)
+
+const ReacthooksSyncexternalstoreRoute =
+  ReacthooksSyncexternalstoreImport.update({
+    id: '/reacthooks/syncexternalstore',
+    path: '/reacthooks/syncexternalstore',
+    getParentRoute: () => rootRoute,
+  } as any)
 
 // Populate the FileRoutesByPath interface
 
@@ -60,6 +75,20 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof FormImport
       parentRoute: typeof rootRoute
     }
+    '/reacthooks/syncexternalstore': {
+      id: '/reacthooks/syncexternalstore'
+      path: '/reacthooks/syncexternalstore'
+      fullPath: '/reacthooks/syncexternalstore'
+      preLoaderRoute: typeof ReacthooksSyncexternalstoreImport
+      parentRoute: typeof rootRoute
+    }
+    '/reacthooks/': {
+      id: '/reacthooks/'
+      path: '/reacthooks'
+      fullPath: '/reacthooks'
+      preLoaderRoute: typeof ReacthooksIndexImport
+      parentRoute: typeof rootRoute
+    }
   }
 }
 
@@ -69,12 +98,16 @@ export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/counter': typeof CounterRoute
   '/form': typeof FormRoute
+  '/reacthooks/syncexternalstore': typeof ReacthooksSyncexternalstoreRoute
+  '/reacthooks': typeof ReacthooksIndexRoute
 }
 
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/counter': typeof CounterRoute
   '/form': typeof FormRoute
+  '/reacthooks/syncexternalstore': typeof ReacthooksSyncexternalstoreRoute
+  '/reacthooks': typeof ReacthooksIndexRoute
 }
 
 export interface FileRoutesById {
@@ -82,14 +115,32 @@ export interface FileRoutesById {
   '/': typeof IndexRoute
   '/counter': typeof CounterRoute
   '/form': typeof FormRoute
+  '/reacthooks/syncexternalstore': typeof ReacthooksSyncexternalstoreRoute
+  '/reacthooks/': typeof ReacthooksIndexRoute
 }
 
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/counter' | '/form'
+  fullPaths:
+    | '/'
+    | '/counter'
+    | '/form'
+    | '/reacthooks/syncexternalstore'
+    | '/reacthooks'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/counter' | '/form'
-  id: '__root__' | '/' | '/counter' | '/form'
+  to:
+    | '/'
+    | '/counter'
+    | '/form'
+    | '/reacthooks/syncexternalstore'
+    | '/reacthooks'
+  id:
+    | '__root__'
+    | '/'
+    | '/counter'
+    | '/form'
+    | '/reacthooks/syncexternalstore'
+    | '/reacthooks/'
   fileRoutesById: FileRoutesById
 }
 
@@ -97,12 +148,16 @@ export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   CounterRoute: typeof CounterRoute
   FormRoute: typeof FormRoute
+  ReacthooksSyncexternalstoreRoute: typeof ReacthooksSyncexternalstoreRoute
+  ReacthooksIndexRoute: typeof ReacthooksIndexRoute
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   CounterRoute: CounterRoute,
   FormRoute: FormRoute,
+  ReacthooksSyncexternalstoreRoute: ReacthooksSyncexternalstoreRoute,
+  ReacthooksIndexRoute: ReacthooksIndexRoute,
 }
 
 export const routeTree = rootRoute
@@ -117,7 +172,9 @@ export const routeTree = rootRoute
       "children": [
         "/",
         "/counter",
-        "/form"
+        "/form",
+        "/reacthooks/syncexternalstore",
+        "/reacthooks/"
       ]
     },
     "/": {
@@ -128,6 +185,12 @@ export const routeTree = rootRoute
     },
     "/form": {
       "filePath": "form.tsx"
+    },
+    "/reacthooks/syncexternalstore": {
+      "filePath": "reacthooks/syncexternalstore.tsx"
+    },
+    "/reacthooks/": {
+      "filePath": "reacthooks/index.tsx"
     }
   }
 }

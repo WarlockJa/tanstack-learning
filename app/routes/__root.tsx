@@ -7,7 +7,7 @@ import {
 } from "@tanstack/react-router";
 
 import appCss from "@/styles/app.css?url";
-import Header from "@/components/ui/header/Header";
+import Header from "@/components/header/Header";
 import { ThemeProvider } from "@/components/theme-provider";
 
 export const Route = createRootRoute({
