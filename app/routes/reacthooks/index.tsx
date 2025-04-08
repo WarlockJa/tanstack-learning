@@ -6,6 +6,7 @@ export const Route = createFileRoute("/reacthooks/")({
 
 const hookList = [
   { href: "/reacthooks/syncexternalstore", title: "useSyncExternalStorage" },
+  { href: "/reacthooks/transition", title: "useTransition" },
 ];
 
 export default function ReactHooks() {

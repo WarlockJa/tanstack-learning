@@ -15,6 +15,7 @@ import { Route as FormImport } from './routes/form'
 import { Route as CounterImport } from './routes/counter'
 import { Route as IndexImport } from './routes/index'
 import { Route as ReacthooksIndexImport } from './routes/reacthooks/index'
+import { Route as ReacthooksTransitionImport } from './routes/reacthooks/transition'
 import { Route as ReacthooksSyncexternalstoreImport } from './routes/reacthooks/syncexternalstore'
 
 // Create/Update Routes
@@ -40,6 +41,12 @@ const IndexRoute = IndexImport.update({
 const ReacthooksIndexRoute = ReacthooksIndexImport.update({
   id: '/reacthooks/',
   path: '/reacthooks/',
+  getParentRoute: () => rootRoute,
+} as any)
+
+const ReacthooksTransitionRoute = ReacthooksTransitionImport.update({
+  id: '/reacthooks/transition',
+  path: '/reacthooks/transition',
   getParentRoute: () => rootRoute,
 } as any)
 
@@ -82,6 +89,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ReacthooksSyncexternalstoreImport
       parentRoute: typeof rootRoute
     }
+    '/reacthooks/transition': {
+      id: '/reacthooks/transition'
+      path: '/reacthooks/transition'
+      fullPath: '/reacthooks/transition'
+      preLoaderRoute: typeof ReacthooksTransitionImport
+      parentRoute: typeof rootRoute
+    }
     '/reacthooks/': {
       id: '/reacthooks/'
       path: '/reacthooks'
@@ -99,6 +113,7 @@ export interface FileRoutesByFullPath {
   '/counter': typeof CounterRoute
   '/form': typeof FormRoute
   '/reacthooks/syncexternalstore': typeof ReacthooksSyncexternalstoreRoute
+  '/reacthooks/transition': typeof ReacthooksTransitionRoute
   '/reacthooks': typeof ReacthooksIndexRoute
 }
 
@@ -107,6 +122,7 @@ export interface FileRoutesByTo {
   '/counter': typeof CounterRoute
   '/form': typeof FormRoute
   '/reacthooks/syncexternalstore': typeof ReacthooksSyncexternalstoreRoute
+  '/reacthooks/transition': typeof ReacthooksTransitionRoute
   '/reacthooks': typeof ReacthooksIndexRoute
 }
 
@@ -116,6 +132,7 @@ export interface FileRoutesById {
   '/counter': typeof CounterRoute
   '/form': typeof FormRoute
   '/reacthooks/syncexternalstore': typeof ReacthooksSyncexternalstoreRoute
+  '/reacthooks/transition': typeof ReacthooksTransitionRoute
   '/reacthooks/': typeof ReacthooksIndexRoute
 }
 
@@ -126,6 +143,7 @@ export interface FileRouteTypes {
     | '/counter'
     | '/form'
     | '/reacthooks/syncexternalstore'
+    | '/reacthooks/transition'
     | '/reacthooks'
   fileRoutesByTo: FileRoutesByTo
   to:
@@ -133,6 +151,7 @@ export interface FileRouteTypes {
     | '/counter'
     | '/form'
     | '/reacthooks/syncexternalstore'
+    | '/reacthooks/transition'
     | '/reacthooks'
   id:
     | '__root__'
@@ -140,6 +159,7 @@ export interface FileRouteTypes {
     | '/counter'
     | '/form'
     | '/reacthooks/syncexternalstore'
+    | '/reacthooks/transition'
     | '/reacthooks/'
   fileRoutesById: FileRoutesById
 }
@@ -149,6 +169,7 @@ export interface RootRouteChildren {
   CounterRoute: typeof CounterRoute
   FormRoute: typeof FormRoute
   ReacthooksSyncexternalstoreRoute: typeof ReacthooksSyncexternalstoreRoute
+  ReacthooksTransitionRoute: typeof ReacthooksTransitionRoute
   ReacthooksIndexRoute: typeof ReacthooksIndexRoute
 }
 
@@ -157,6 +178,7 @@ const rootRouteChildren: RootRouteChildren = {
   CounterRoute: CounterRoute,
   FormRoute: FormRoute,
   ReacthooksSyncexternalstoreRoute: ReacthooksSyncexternalstoreRoute,
+  ReacthooksTransitionRoute: ReacthooksTransitionRoute,
   ReacthooksIndexRoute: ReacthooksIndexRoute,
 }
 
@@ -174,6 +196,7 @@ export const routeTree = rootRoute
         "/counter",
         "/form",
         "/reacthooks/syncexternalstore",
+        "/reacthooks/transition",
         "/reacthooks/"
       ]
     },
@@ -188,6 +211,9 @@ export const routeTree = rootRoute
     },
     "/reacthooks/syncexternalstore": {
       "filePath": "reacthooks/syncexternalstore.tsx"
+    },
+    "/reacthooks/transition": {
+      "filePath": "reacthooks/transition.tsx"
     },
     "/reacthooks/": {
       "filePath": "reacthooks/index.tsx"
