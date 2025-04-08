@@ -8,6 +8,7 @@ const hookList = [
   { href: "/reacthooks/syncexternalstore", title: "useSyncExternalStorage" },
   { href: "/reacthooks/transition", title: "useTransition" },
   { href: "/reacthooks/deferredvalue", title: "useDeferredValue" },
+  { href: "/reacthooks/use", title: "use" },
 ];
 
 export default function ReactHooks() {

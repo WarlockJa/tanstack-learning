@@ -15,6 +15,7 @@ import { Route as FormImport } from './routes/form'
 import { Route as CounterImport } from './routes/counter'
 import { Route as IndexImport } from './routes/index'
 import { Route as ReacthooksIndexImport } from './routes/reacthooks/index'
+import { Route as ReacthooksUseImport } from './routes/reacthooks/use'
 import { Route as ReacthooksTransitionImport } from './routes/reacthooks/transition'
 import { Route as ReacthooksSyncexternalstoreImport } from './routes/reacthooks/syncexternalstore'
 import { Route as ReacthooksDeferredvalueImport } from './routes/reacthooks/deferredvalue'
@@ -42,6 +43,12 @@ const IndexRoute = IndexImport.update({
 const ReacthooksIndexRoute = ReacthooksIndexImport.update({
   id: '/reacthooks/',
   path: '/reacthooks/',
+  getParentRoute: () => rootRoute,
+} as any)
+
+const ReacthooksUseRoute = ReacthooksUseImport.update({
+  id: '/reacthooks/use',
+  path: '/reacthooks/use',
   getParentRoute: () => rootRoute,
 } as any)
 
@@ -110,6 +117,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ReacthooksTransitionImport
       parentRoute: typeof rootRoute
     }
+    '/reacthooks/use': {
+      id: '/reacthooks/use'
+      path: '/reacthooks/use'
+      fullPath: '/reacthooks/use'
+      preLoaderRoute: typeof ReacthooksUseImport
+      parentRoute: typeof rootRoute
+    }
     '/reacthooks/': {
       id: '/reacthooks/'
       path: '/reacthooks'
@@ -129,6 +143,7 @@ export interface FileRoutesByFullPath {
   '/reacthooks/deferredvalue': typeof ReacthooksDeferredvalueRoute
   '/reacthooks/syncexternalstore': typeof ReacthooksSyncexternalstoreRoute
   '/reacthooks/transition': typeof ReacthooksTransitionRoute
+  '/reacthooks/use': typeof ReacthooksUseRoute
   '/reacthooks': typeof ReacthooksIndexRoute
 }
 
@@ -139,6 +154,7 @@ export interface FileRoutesByTo {
   '/reacthooks/deferredvalue': typeof ReacthooksDeferredvalueRoute
   '/reacthooks/syncexternalstore': typeof ReacthooksSyncexternalstoreRoute
   '/reacthooks/transition': typeof ReacthooksTransitionRoute
+  '/reacthooks/use': typeof ReacthooksUseRoute
   '/reacthooks': typeof ReacthooksIndexRoute
 }
 
@@ -150,6 +166,7 @@ export interface FileRoutesById {
   '/reacthooks/deferredvalue': typeof ReacthooksDeferredvalueRoute
   '/reacthooks/syncexternalstore': typeof ReacthooksSyncexternalstoreRoute
   '/reacthooks/transition': typeof ReacthooksTransitionRoute
+  '/reacthooks/use': typeof ReacthooksUseRoute
   '/reacthooks/': typeof ReacthooksIndexRoute
 }
 
@@ -162,6 +179,7 @@ export interface FileRouteTypes {
     | '/reacthooks/deferredvalue'
     | '/reacthooks/syncexternalstore'
     | '/reacthooks/transition'
+    | '/reacthooks/use'
     | '/reacthooks'
   fileRoutesByTo: FileRoutesByTo
   to:
@@ -171,6 +189,7 @@ export interface FileRouteTypes {
     | '/reacthooks/deferredvalue'
     | '/reacthooks/syncexternalstore'
     | '/reacthooks/transition'
+    | '/reacthooks/use'
     | '/reacthooks'
   id:
     | '__root__'
@@ -180,6 +199,7 @@ export interface FileRouteTypes {
     | '/reacthooks/deferredvalue'
     | '/reacthooks/syncexternalstore'
     | '/reacthooks/transition'
+    | '/reacthooks/use'
     | '/reacthooks/'
   fileRoutesById: FileRoutesById
 }
@@ -191,6 +211,7 @@ export interface RootRouteChildren {
   ReacthooksDeferredvalueRoute: typeof ReacthooksDeferredvalueRoute
   ReacthooksSyncexternalstoreRoute: typeof ReacthooksSyncexternalstoreRoute
   ReacthooksTransitionRoute: typeof ReacthooksTransitionRoute
+  ReacthooksUseRoute: typeof ReacthooksUseRoute
   ReacthooksIndexRoute: typeof ReacthooksIndexRoute
 }
 
@@ -201,6 +222,7 @@ const rootRouteChildren: RootRouteChildren = {
   ReacthooksDeferredvalueRoute: ReacthooksDeferredvalueRoute,
   ReacthooksSyncexternalstoreRoute: ReacthooksSyncexternalstoreRoute,
   ReacthooksTransitionRoute: ReacthooksTransitionRoute,
+  ReacthooksUseRoute: ReacthooksUseRoute,
   ReacthooksIndexRoute: ReacthooksIndexRoute,
 }
 
@@ -220,6 +242,7 @@ export const routeTree = rootRoute
         "/reacthooks/deferredvalue",
         "/reacthooks/syncexternalstore",
         "/reacthooks/transition",
+        "/reacthooks/use",
         "/reacthooks/"
       ]
     },
@@ -240,6 +263,9 @@ export const routeTree = rootRoute
     },
     "/reacthooks/transition": {
       "filePath": "reacthooks/transition.tsx"
+    },
+    "/reacthooks/use": {
+      "filePath": "reacthooks/use.tsx"
     },
     "/reacthooks/": {
       "filePath": "reacthooks/index.tsx"
