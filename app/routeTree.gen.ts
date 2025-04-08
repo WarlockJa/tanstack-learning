@@ -19,6 +19,7 @@ import { Route as ReacthooksUseImport } from './routes/reacthooks/use'
 import { Route as ReacthooksTransitionImport } from './routes/reacthooks/transition'
 import { Route as ReacthooksSyncexternalstoreImport } from './routes/reacthooks/syncexternalstore'
 import { Route as ReacthooksDeferredvalueImport } from './routes/reacthooks/deferredvalue'
+import { Route as ReacthooksContextImport } from './routes/reacthooks/context'
 
 // Create/Update Routes
 
@@ -71,6 +72,12 @@ const ReacthooksDeferredvalueRoute = ReacthooksDeferredvalueImport.update({
   getParentRoute: () => rootRoute,
 } as any)
 
+const ReacthooksContextRoute = ReacthooksContextImport.update({
+  id: '/reacthooks/context',
+  path: '/reacthooks/context',
+  getParentRoute: () => rootRoute,
+} as any)
+
 // Populate the FileRoutesByPath interface
 
 declare module '@tanstack/react-router' {
@@ -94,6 +101,13 @@ declare module '@tanstack/react-router' {
       path: '/form'
       fullPath: '/form'
       preLoaderRoute: typeof FormImport
+      parentRoute: typeof rootRoute
+    }
+    '/reacthooks/context': {
+      id: '/reacthooks/context'
+      path: '/reacthooks/context'
+      fullPath: '/reacthooks/context'
+      preLoaderRoute: typeof ReacthooksContextImport
       parentRoute: typeof rootRoute
     }
     '/reacthooks/deferredvalue': {
@@ -140,6 +154,7 @@ export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/counter': typeof CounterRoute
   '/form': typeof FormRoute
+  '/reacthooks/context': typeof ReacthooksContextRoute
   '/reacthooks/deferredvalue': typeof ReacthooksDeferredvalueRoute
   '/reacthooks/syncexternalstore': typeof ReacthooksSyncexternalstoreRoute
   '/reacthooks/transition': typeof ReacthooksTransitionRoute
@@ -151,6 +166,7 @@ export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/counter': typeof CounterRoute
   '/form': typeof FormRoute
+  '/reacthooks/context': typeof ReacthooksContextRoute
   '/reacthooks/deferredvalue': typeof ReacthooksDeferredvalueRoute
   '/reacthooks/syncexternalstore': typeof ReacthooksSyncexternalstoreRoute
   '/reacthooks/transition': typeof ReacthooksTransitionRoute
@@ -163,6 +179,7 @@ export interface FileRoutesById {
   '/': typeof IndexRoute
   '/counter': typeof CounterRoute
   '/form': typeof FormRoute
+  '/reacthooks/context': typeof ReacthooksContextRoute
   '/reacthooks/deferredvalue': typeof ReacthooksDeferredvalueRoute
   '/reacthooks/syncexternalstore': typeof ReacthooksSyncexternalstoreRoute
   '/reacthooks/transition': typeof ReacthooksTransitionRoute
@@ -176,6 +193,7 @@ export interface FileRouteTypes {
     | '/'
     | '/counter'
     | '/form'
+    | '/reacthooks/context'
     | '/reacthooks/deferredvalue'
     | '/reacthooks/syncexternalstore'
     | '/reacthooks/transition'
@@ -186,6 +204,7 @@ export interface FileRouteTypes {
     | '/'
     | '/counter'
     | '/form'
+    | '/reacthooks/context'
     | '/reacthooks/deferredvalue'
     | '/reacthooks/syncexternalstore'
     | '/reacthooks/transition'
@@ -196,6 +215,7 @@ export interface FileRouteTypes {
     | '/'
     | '/counter'
     | '/form'
+    | '/reacthooks/context'
     | '/reacthooks/deferredvalue'
     | '/reacthooks/syncexternalstore'
     | '/reacthooks/transition'
@@ -208,6 +228,7 @@ export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   CounterRoute: typeof CounterRoute
   FormRoute: typeof FormRoute
+  ReacthooksContextRoute: typeof ReacthooksContextRoute
   ReacthooksDeferredvalueRoute: typeof ReacthooksDeferredvalueRoute
   ReacthooksSyncexternalstoreRoute: typeof ReacthooksSyncexternalstoreRoute
   ReacthooksTransitionRoute: typeof ReacthooksTransitionRoute
@@ -219,6 +240,7 @@ const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   CounterRoute: CounterRoute,
   FormRoute: FormRoute,
+  ReacthooksContextRoute: ReacthooksContextRoute,
   ReacthooksDeferredvalueRoute: ReacthooksDeferredvalueRoute,
   ReacthooksSyncexternalstoreRoute: ReacthooksSyncexternalstoreRoute,
   ReacthooksTransitionRoute: ReacthooksTransitionRoute,
@@ -239,6 +261,7 @@ export const routeTree = rootRoute
         "/",
         "/counter",
         "/form",
+        "/reacthooks/context",
         "/reacthooks/deferredvalue",
         "/reacthooks/syncexternalstore",
         "/reacthooks/transition",
@@ -254,6 +277,9 @@ export const routeTree = rootRoute
     },
     "/form": {
       "filePath": "form.tsx"
+    },
+    "/reacthooks/context": {
+      "filePath": "reacthooks/context.tsx"
     },
     "/reacthooks/deferredvalue": {
       "filePath": "reacthooks/deferredvalue.tsx"

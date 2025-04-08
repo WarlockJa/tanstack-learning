@@ -9,6 +9,7 @@ const hookList = [
   { href: "/reacthooks/transition", title: "useTransition" },
   { href: "/reacthooks/deferredvalue", title: "useDeferredValue" },
   { href: "/reacthooks/use", title: "use" },
+  { href: "/reacthooks/context", title: "useProvider" },
 ];
 
 export default function ReactHooks() {
