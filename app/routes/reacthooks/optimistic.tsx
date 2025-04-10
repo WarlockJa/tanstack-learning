@@ -5,9 +5,12 @@ import { createFileRoute } from "@tanstack/react-router";
 import { useOptimistic, useRef, useState } from "react";
 
 type OptimisticItem = {
+  id: number;
   text: string;
   sending: boolean;
 };
+
+let key = 0;
 
 export const Route = createFileRoute("/reacthooks/optimistic")({
   component: RouteComponent,
@@ -15,30 +18,32 @@ export const Route = createFileRoute("/reacthooks/optimistic")({
 
 function RouteComponent() {
   const [items, setItems] = useState<OptimisticItem[]>([]);
-  const [optimisticItems, addOptimisticItem] = useOptimistic(
+  const [optimisticItems, processOptimisticItem] = useOptimistic(
     items,
-    (state, newItem: string) => [
-      ...state,
-      {
-        text: newItem,
-        sending: true,
-      },
-    ],
+    (state, newItem: OptimisticItem) => [...state, newItem],
   );
   const formRef = useRef<HTMLFormElement>(null);
 
+  const displayItems = filterDuplicates(optimisticItems);
+
   async function formAction(formData: FormData) {
     const formItem = formData.get("item") as string;
+    const id = key++;
 
     formRef.current?.reset();
 
-    addOptimisticItem(formItem);
+    processOptimisticItem({
+      id,
+      text: formItem,
+      sending: true,
+    });
 
     await new Promise((resolve) => setTimeout(resolve, 2000));
     Math.random() > 0.5 &&
       setItems((prev) => [
         ...prev,
         {
+          id,
           text: formItem,
           sending: false,
         },
@@ -52,7 +57,7 @@ function RouteComponent() {
         <Button>Add</Button>
       </form>
       <Button onClick={() => setItems([])}>Reset</Button>
-      <ItemsList items={optimisticItems} />
+      <ItemsList items={displayItems} />
     </main>
   );
 }
@@ -67,4 +72,16 @@ function ItemsList({ items }: { items: OptimisticItem[] }) {
       ))}
     </ul>
   );
+}
+
+function filterDuplicates(items: OptimisticItem[]): OptimisticItem[] {
+  const result: OptimisticItem[] = [];
+  const set = new Set();
+  for (const item of items) {
+    if (!set.has(item.id)) {
+      result.push(item);
+      set.add(item.id);
+    }
+  }
+  return result;
 }
