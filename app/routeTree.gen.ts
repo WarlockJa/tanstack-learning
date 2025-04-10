@@ -18,6 +18,7 @@ import { Route as ReacthooksIndexImport } from './routes/reacthooks/index'
 import { Route as ReacthooksUseImport } from './routes/reacthooks/use'
 import { Route as ReacthooksTransitionImport } from './routes/reacthooks/transition'
 import { Route as ReacthooksSyncexternalstoreImport } from './routes/reacthooks/syncexternalstore'
+import { Route as ReacthooksOptimisticImport } from './routes/reacthooks/optimistic'
 import { Route as ReacthooksDeferredvalueImport } from './routes/reacthooks/deferredvalue'
 import { Route as ReacthooksContextImport } from './routes/reacthooks/context'
 
@@ -65,6 +66,12 @@ const ReacthooksSyncexternalstoreRoute =
     path: '/reacthooks/syncexternalstore',
     getParentRoute: () => rootRoute,
   } as any)
+
+const ReacthooksOptimisticRoute = ReacthooksOptimisticImport.update({
+  id: '/reacthooks/optimistic',
+  path: '/reacthooks/optimistic',
+  getParentRoute: () => rootRoute,
+} as any)
 
 const ReacthooksDeferredvalueRoute = ReacthooksDeferredvalueImport.update({
   id: '/reacthooks/deferredvalue',
@@ -117,6 +124,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ReacthooksDeferredvalueImport
       parentRoute: typeof rootRoute
     }
+    '/reacthooks/optimistic': {
+      id: '/reacthooks/optimistic'
+      path: '/reacthooks/optimistic'
+      fullPath: '/reacthooks/optimistic'
+      preLoaderRoute: typeof ReacthooksOptimisticImport
+      parentRoute: typeof rootRoute
+    }
     '/reacthooks/syncexternalstore': {
       id: '/reacthooks/syncexternalstore'
       path: '/reacthooks/syncexternalstore'
@@ -156,6 +170,7 @@ export interface FileRoutesByFullPath {
   '/form': typeof FormRoute
   '/reacthooks/context': typeof ReacthooksContextRoute
   '/reacthooks/deferredvalue': typeof ReacthooksDeferredvalueRoute
+  '/reacthooks/optimistic': typeof ReacthooksOptimisticRoute
   '/reacthooks/syncexternalstore': typeof ReacthooksSyncexternalstoreRoute
   '/reacthooks/transition': typeof ReacthooksTransitionRoute
   '/reacthooks/use': typeof ReacthooksUseRoute
@@ -168,6 +183,7 @@ export interface FileRoutesByTo {
   '/form': typeof FormRoute
   '/reacthooks/context': typeof ReacthooksContextRoute
   '/reacthooks/deferredvalue': typeof ReacthooksDeferredvalueRoute
+  '/reacthooks/optimistic': typeof ReacthooksOptimisticRoute
   '/reacthooks/syncexternalstore': typeof ReacthooksSyncexternalstoreRoute
   '/reacthooks/transition': typeof ReacthooksTransitionRoute
   '/reacthooks/use': typeof ReacthooksUseRoute
@@ -181,6 +197,7 @@ export interface FileRoutesById {
   '/form': typeof FormRoute
   '/reacthooks/context': typeof ReacthooksContextRoute
   '/reacthooks/deferredvalue': typeof ReacthooksDeferredvalueRoute
+  '/reacthooks/optimistic': typeof ReacthooksOptimisticRoute
   '/reacthooks/syncexternalstore': typeof ReacthooksSyncexternalstoreRoute
   '/reacthooks/transition': typeof ReacthooksTransitionRoute
   '/reacthooks/use': typeof ReacthooksUseRoute
@@ -195,6 +212,7 @@ export interface FileRouteTypes {
     | '/form'
     | '/reacthooks/context'
     | '/reacthooks/deferredvalue'
+    | '/reacthooks/optimistic'
     | '/reacthooks/syncexternalstore'
     | '/reacthooks/transition'
     | '/reacthooks/use'
@@ -206,6 +224,7 @@ export interface FileRouteTypes {
     | '/form'
     | '/reacthooks/context'
     | '/reacthooks/deferredvalue'
+    | '/reacthooks/optimistic'
     | '/reacthooks/syncexternalstore'
     | '/reacthooks/transition'
     | '/reacthooks/use'
@@ -217,6 +236,7 @@ export interface FileRouteTypes {
     | '/form'
     | '/reacthooks/context'
     | '/reacthooks/deferredvalue'
+    | '/reacthooks/optimistic'
     | '/reacthooks/syncexternalstore'
     | '/reacthooks/transition'
     | '/reacthooks/use'
@@ -230,6 +250,7 @@ export interface RootRouteChildren {
   FormRoute: typeof FormRoute
   ReacthooksContextRoute: typeof ReacthooksContextRoute
   ReacthooksDeferredvalueRoute: typeof ReacthooksDeferredvalueRoute
+  ReacthooksOptimisticRoute: typeof ReacthooksOptimisticRoute
   ReacthooksSyncexternalstoreRoute: typeof ReacthooksSyncexternalstoreRoute
   ReacthooksTransitionRoute: typeof ReacthooksTransitionRoute
   ReacthooksUseRoute: typeof ReacthooksUseRoute
@@ -242,6 +263,7 @@ const rootRouteChildren: RootRouteChildren = {
   FormRoute: FormRoute,
   ReacthooksContextRoute: ReacthooksContextRoute,
   ReacthooksDeferredvalueRoute: ReacthooksDeferredvalueRoute,
+  ReacthooksOptimisticRoute: ReacthooksOptimisticRoute,
   ReacthooksSyncexternalstoreRoute: ReacthooksSyncexternalstoreRoute,
   ReacthooksTransitionRoute: ReacthooksTransitionRoute,
   ReacthooksUseRoute: ReacthooksUseRoute,
@@ -263,6 +285,7 @@ export const routeTree = rootRoute
         "/form",
         "/reacthooks/context",
         "/reacthooks/deferredvalue",
+        "/reacthooks/optimistic",
         "/reacthooks/syncexternalstore",
         "/reacthooks/transition",
         "/reacthooks/use",
@@ -283,6 +306,9 @@ export const routeTree = rootRoute
     },
     "/reacthooks/deferredvalue": {
       "filePath": "reacthooks/deferredvalue.tsx"
+    },
+    "/reacthooks/optimistic": {
+      "filePath": "reacthooks/optimistic.tsx"
     },
     "/reacthooks/syncexternalstore": {
       "filePath": "reacthooks/syncexternalstore.tsx"
