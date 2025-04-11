@@ -39,7 +39,7 @@ export default function TodoList() {
     });
   }
 
-  async function handleDeleteTodo(id: number) {
+  function handleDeleteTodo(id: number) {
     startTransition(async () => {
       applyOptimisticUpdate({ type: "optimisticDelete", id });
 
@@ -74,7 +74,7 @@ function TodoItem({
   handleDeleteTodo,
 }: {
   todo: OptimisticTodo;
-  handleDeleteTodo: (id: number) => Promise<void>;
+  handleDeleteTodo: (id: number) => void;
 }) {
   return (
     <li className="flex items-center gap-2">

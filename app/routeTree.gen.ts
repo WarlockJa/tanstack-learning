@@ -21,6 +21,7 @@ import { Route as ReacthooksSyncexternalstoreImport } from './routes/reacthooks/
 import { Route as ReacthooksOptimisticImport } from './routes/reacthooks/optimistic'
 import { Route as ReacthooksDeferredvalueImport } from './routes/reacthooks/deferredvalue'
 import { Route as ReacthooksContextImport } from './routes/reacthooks/context'
+import { Route as ReacthooksActionstateImport } from './routes/reacthooks/actionstate'
 
 // Create/Update Routes
 
@@ -85,6 +86,12 @@ const ReacthooksContextRoute = ReacthooksContextImport.update({
   getParentRoute: () => rootRoute,
 } as any)
 
+const ReacthooksActionstateRoute = ReacthooksActionstateImport.update({
+  id: '/reacthooks/actionstate',
+  path: '/reacthooks/actionstate',
+  getParentRoute: () => rootRoute,
+} as any)
+
 // Populate the FileRoutesByPath interface
 
 declare module '@tanstack/react-router' {
@@ -108,6 +115,13 @@ declare module '@tanstack/react-router' {
       path: '/form'
       fullPath: '/form'
       preLoaderRoute: typeof FormImport
+      parentRoute: typeof rootRoute
+    }
+    '/reacthooks/actionstate': {
+      id: '/reacthooks/actionstate'
+      path: '/reacthooks/actionstate'
+      fullPath: '/reacthooks/actionstate'
+      preLoaderRoute: typeof ReacthooksActionstateImport
       parentRoute: typeof rootRoute
     }
     '/reacthooks/context': {
@@ -168,6 +182,7 @@ export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/counter': typeof CounterRoute
   '/form': typeof FormRoute
+  '/reacthooks/actionstate': typeof ReacthooksActionstateRoute
   '/reacthooks/context': typeof ReacthooksContextRoute
   '/reacthooks/deferredvalue': typeof ReacthooksDeferredvalueRoute
   '/reacthooks/optimistic': typeof ReacthooksOptimisticRoute
@@ -181,6 +196,7 @@ export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/counter': typeof CounterRoute
   '/form': typeof FormRoute
+  '/reacthooks/actionstate': typeof ReacthooksActionstateRoute
   '/reacthooks/context': typeof ReacthooksContextRoute
   '/reacthooks/deferredvalue': typeof ReacthooksDeferredvalueRoute
   '/reacthooks/optimistic': typeof ReacthooksOptimisticRoute
@@ -195,6 +211,7 @@ export interface FileRoutesById {
   '/': typeof IndexRoute
   '/counter': typeof CounterRoute
   '/form': typeof FormRoute
+  '/reacthooks/actionstate': typeof ReacthooksActionstateRoute
   '/reacthooks/context': typeof ReacthooksContextRoute
   '/reacthooks/deferredvalue': typeof ReacthooksDeferredvalueRoute
   '/reacthooks/optimistic': typeof ReacthooksOptimisticRoute
@@ -210,6 +227,7 @@ export interface FileRouteTypes {
     | '/'
     | '/counter'
     | '/form'
+    | '/reacthooks/actionstate'
     | '/reacthooks/context'
     | '/reacthooks/deferredvalue'
     | '/reacthooks/optimistic'
@@ -222,6 +240,7 @@ export interface FileRouteTypes {
     | '/'
     | '/counter'
     | '/form'
+    | '/reacthooks/actionstate'
     | '/reacthooks/context'
     | '/reacthooks/deferredvalue'
     | '/reacthooks/optimistic'
@@ -234,6 +253,7 @@ export interface FileRouteTypes {
     | '/'
     | '/counter'
     | '/form'
+    | '/reacthooks/actionstate'
     | '/reacthooks/context'
     | '/reacthooks/deferredvalue'
     | '/reacthooks/optimistic'
@@ -248,6 +268,7 @@ export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   CounterRoute: typeof CounterRoute
   FormRoute: typeof FormRoute
+  ReacthooksActionstateRoute: typeof ReacthooksActionstateRoute
   ReacthooksContextRoute: typeof ReacthooksContextRoute
   ReacthooksDeferredvalueRoute: typeof ReacthooksDeferredvalueRoute
   ReacthooksOptimisticRoute: typeof ReacthooksOptimisticRoute
@@ -261,6 +282,7 @@ const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   CounterRoute: CounterRoute,
   FormRoute: FormRoute,
+  ReacthooksActionstateRoute: ReacthooksActionstateRoute,
   ReacthooksContextRoute: ReacthooksContextRoute,
   ReacthooksDeferredvalueRoute: ReacthooksDeferredvalueRoute,
   ReacthooksOptimisticRoute: ReacthooksOptimisticRoute,
@@ -283,6 +305,7 @@ export const routeTree = rootRoute
         "/",
         "/counter",
         "/form",
+        "/reacthooks/actionstate",
         "/reacthooks/context",
         "/reacthooks/deferredvalue",
         "/reacthooks/optimistic",
@@ -300,6 +323,9 @@ export const routeTree = rootRoute
     },
     "/form": {
       "filePath": "form.tsx"
+    },
+    "/reacthooks/actionstate": {
+      "filePath": "reacthooks/actionstate.tsx"
     },
     "/reacthooks/context": {
       "filePath": "reacthooks/context.tsx"

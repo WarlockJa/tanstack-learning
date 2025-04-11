@@ -11,6 +11,7 @@ const hookList = [
   { href: "/reacthooks/use", title: "use" },
   { href: "/reacthooks/context", title: "useContext/useReducer" },
   { href: "/reacthooks/optimistic", title: "useOptimistic" },
+  { href: "/reacthooks/actionstate", title: "useActionState" },
 ];
 
 export default function ReactHooks() {
