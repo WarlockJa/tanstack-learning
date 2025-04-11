@@ -18,7 +18,7 @@ async function getWeather(): Promise<WeatherAlertTypes | undefined> {
   return undefined;
 }
 
-const getCount = createServerFn({
+const getWeatherAction = createServerFn({
   method: "GET",
 }).handler(() => {
   return getWeather();
@@ -34,7 +34,7 @@ export default function TabFetch() {
         disabled={isPending}
         onClick={() => {
           startTransition(async () => {
-            const result = await getCount();
+            const result = await getWeatherAction();
             if (!result) return;
 
             setData(result.eventTypes);
